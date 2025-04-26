@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indian Railway Management System</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background: #333;
+        color: white;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        margin: px;
+        padding: 0;
+      }
+      nav ul li a {
+    padding-left: 10px;
+    color: white;
+    text-decoration: none;
+    display: block; /* This makes the link a block-level element */
+    text-align: left; /* Aligns text to the left */
+}
+
+      .logo {
+        font-size: 1.5rem;
+        margin-right: auto;
+      }
+      .language-selector {
+        margin-left: 50rem;
+        
+      }
+      .search-section,
+      .results-section {
+        padding: 1rem;
+      }
+      .train-card {
+        border: 1px solid #ccc;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 8px;
+        background: #f9f9f9;
+      }
+      .train-info h2 {
+        margin: 0.5rem 0;
+      }
+      .book-button {
+        padding: 0.5rem 1rem;
+        background: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      footer {
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo" data-translate="title">
+          Indian Railway Management System
+        </div>
+        <ul>
+          <li><a href="index.html" data-translate="home">Home</a></li>
+          <li><a href="pnr-enquiry.html" data-translate="trains">Trains</a></li>
+          <li><a href="login.html" data-translate="login">Login</a></li>
+        </ul>
+        <select class="language-selector" id="language-selector">
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+        </select>
+      </nav>
+    </header>
+
+    <main>
+      <section class="search-section">
+        <h1 data-translate="bookTitle">Book Your Train Tickets</h1>
+        <form id="search-form">
+          <input type="text" id="from" placeholder="From" required />
+          <input type="text" id="to" placeholder="To" required />
+          <input type="date" required />
+          <button type="submit" data-translate="search">Search</button>
+        </form>
+      </section>
+
+      <section class="results-section" id="results-section">
+        <!-- Search results will appear here -->
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2025
+        <span data-translate="footer">Railway Management System</span>
+      </p>
+      <p data-translate="credit">Made by Group No.13</p>
+    </footer>
+
+    <script>
+      const translations = {
+        en: {
+          title: "Indian Railway Management System",
+          home: "Home",
+          trains: "Trains",
+          login: "Login",
+          bookTitle: "Book Your Train Tickets",
+          search: "Search",
+          footer: "Railway Reservation System",
+          credit: "Made by Group No.13",
+          bookNow: "Book Now",
+          fromTo: "{from} to {to}",
+          departure: "Departure",
+          arrival: "Arrival",
+          status: "Status",
+          noTrains: "No matching trains found.",
+        },
+        hi: {
+          title: "भारतीय रेलवे प्रबंधन प्रणाली",
+          home: "होम",
+          trains: "ट्रेनें",
+          login: "लॉग इन",
+          bookTitle: "अपनी ट्रेन टिकट बुक करें",
+          search: "खोजें",
+          footer: "रेलवे आरक्षण प्रणाली",
+          credit: "ग्रुप नंबर 13 द्वारा बनाया गया",
+          bookNow: "अभी बुक करें",
+          fromTo: "{from} से {to}",
+          departure: "प्रस्थान",
+          arrival: "आगमन",
+          status: "स्थिति",
+          noTrains: "कोई मेल खाती ट्रेन नहीं मिली।",
+        },
+      };
+
+      const allTrains = [
+        {
+          trainName: "Rajdhani Express",
+          from: "Delhi",
+          to: "Mumbai",
+          departure: "06:00 AM",
+          arrival: "02:00 PM",
+          availability: "Available",
+        },
+        {
+          trainName: "Shatabdi Express",
+          from: "Delhi",
+          to: "Chandigarh",
+          departure: "07:00 AM",
+          arrival: "11:00 AM",
+          availability: "Available",
+        },
+        {
+          trainName: "Duronto Express",
+          from: "Mumbai",
+          to: "Kolkata",
+          departure: "05:00 PM",
+          arrival: "01:00 PM",
+          availability: "Waiting List",
+        },
+        {
+          trainName: "Garib Rath",
+          from: "Chennai",
+          to: "Hyderabad",
+          departure: "09:00 AM",
+          arrival: "05:00 PM",
+          availability: "Available",
+        },
+        {
+          trainName: "Intercity Express",
+          from: "Lucknow",
+          to: "Kanpur",
+          departure: "08:30 AM",
+          arrival: "10:00 AM",
+          availability: "Available",
+        },
+        {
+          trainName: "Goa Express",
+          from: "Goa",
+          to: "Delhi",
+          departure: "04:00 PM",
+          arrival: "11:00 AM",
+          availability: "Waiting List",
+        },
+        {
+          trainName: "Bangalore Express",
+          from: "Kolkata",
+          to: "Bangalore",
+          departure: "10:00 AM",
+          arrival: "06:00 AM",
+          availability: "Available",
+        },
+        {
+          trainName: "Ahmedabad Express",
+          from: "Pune",
+          to: "Ahmedabad",
+          departure: "11:00 AM",
+          arrival: "07:00 PM",
+          availability: "Available",
+        },
+      ];
+
+      function updateLanguage(lang) {
+        document.querySelectorAll("[data-translate]").forEach((el) => {
+          const key = el.getAttribute("data-translate");
+          if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+        renderTrains(currentSearch, lang);
+      }
+
+      let currentSearch = { from: "", to: "" };
+
+      function renderTrains(search = {}, lang = "en") {
+        const resultsSection = document.getElementById("results-section");
+        const langData = translations[lang];
+        resultsSection.innerHTML = "";
+
+        const results = allTrains.filter(
+          (train) =>
+            train.from.toLowerCase().includes(search.from.toLowerCase()) &&
+            train.to.toLowerCase().includes(search.to.toLowerCase())
+        );
+
+        if (results.length === 0) {
+          resultsSection.innerHTML = `<p>${langData.noTrains}</p>`;
+          return;
+        }
+
+        results.forEach((train) => {
+          const card = document.createElement("div");
+          card.className = "train-card";
+          card.innerHTML = `
+          <div class="train-info">
+            <h2>${train.trainName}</h2>
+            <p>${langData.fromTo
+              .replace("{from}", train.from)
+              .replace("{to}", train.to)}</p>
+            <p>${langData.departure}: ${train.departure}</p>
+            <p>${langData.arrival}: ${train.arrival}</p>
+            <p>${langData.status}: ${train.availability}</p>
+          </div>
+          <button class="book-button">${langData.bookNow}</button>
+        `;
+          resultsSection.appendChild(card);
+        });
+      }
+
+      document
+        .getElementById("search-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const from = document.getElementById("from").value.trim();
+          const to = document.getElementById("to").value.trim();
+          currentSearch = { from, to };
+          const lang = document.getElementById("language-selector").value;
+          renderTrains(currentSearch, lang);
+        });
+
+      document
+        .getElementById("language-selector")
+        .addEventListener("change", function () {
+          updateLanguage(this.value);
+        });
+
+      // Initial language setup
+      updateLanguage("en");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!-- passenger-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passenger Dashboard - Railway Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome, Passenger</h1>
+    <nav>
+      <a href="#">Book Tickets</a>
+      <a href="#">Train Schedule</a>
+      <a href="#">Track Train</a>
+      <a href="#">My Account</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="booking">
+      <h2>Book a Ticket</h2>
+      <form id="ticket-form">
+        <input type="text" placeholder="From Station" required>
+        <input type="text" placeholder="To Station" required>
+        <input type="date" required>
+        <button type="submit">Search Trains</button>
+      </form>
+    </section>
+
+    <section id="schedule">
+      <h2>Train Schedule</h2>
+      <div id="schedule-container">Loading schedule...</div>
+    </section>
+
+    <section id="track">
+      <h2>Track Train</h2>
+      <input type="text" placeholder="Enter Train Number">
+      <button>Track</button>
+      <div id="train-status"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Indian Railways</p>
+  </footer>
+</body>
+</html>

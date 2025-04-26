@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passenger Current Status Enquiry</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #276db7;
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    .form-box {
+      display: inline-block;
+      background: white;
+      padding: 30px 40px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px 5px;
+      background-color: #276db7;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d5491;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .language-selector {
+      margin-top: 20px;
+    }
+
+    .train-details {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #e0f7fa;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      display: none;
+      text-align: left;
+    }
+
+    .train-name {
+      font-weight: bold;
+      font-size: 20px;
+      color: #00796b;
+    }
+
+    .train-info {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #00796b;
+    }
+
+    .train-details:hover {
+      background-color: #b2ebf2;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .train-details .train-name, .train-details .train-info {
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .train-details .train-name:hover, .train-details .train-info:hover {
+      color: #004d40;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Passenger Current Status Enquiry</div>
+
+  <div class="container">
+    <div class="form-box">
+      <p id="enter-pnr-text">Enter the PNR for your booking below to get the current status.</p>
+      <form onsubmit="checkPNR(event)">
+        <input type="text" id="pnr" placeholder="Enter PNR No." required>
+        <div>
+          <button type="submit">Submit</button>
+          <button type="button" onclick="clearPNR()">Clear</button>
+        </div>
+      </form>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <div class="language-selector">
+    <label for="language-select">Choose Language: </label>
+    <select id="language-select" onchange="changeLanguage(event)">
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="ta">Tamil</option>
+    </select>
+  </div>
+
+  <!-- Train Details Divs -->
+  <div id="train-name" class="train-details">
+    <div class="train-name">Train Name: </div>
+    <div id="train-name-details" class="train-info"></div>
+  </div>
+
+  <div id="train-info" class="train-details">
+    <div class="train-name">Train Details: </div>
+    <div id="train-info-details" class="train-info"></div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        enterPNRText: "Enter the PNR for your booking below to get the current status.",
+        invalidPNR: "Please enter a valid 10-digit PNR number.",
+        mockResult: "Mock Result: Status for PNR ",
+        trainName: "Express 123",
+        trainDetails: "Train No: 101, Departure: 10:00 AM"
+      },
+      hi: {
+        enterPNRText: "अपना पीएनआर दर्ज करें और स्थिति प्राप्त करें।",
+        invalidPNR: "कृपया एक मान्य 10-अंकीय पीएनआर नंबर दर्ज करें।",
+        mockResult: "मॉक परिणाम: पीएनआर के लिए स्थिति ",
+        trainName: "एक्सप्रेस 123",
+        trainDetails: "ट्रेन नंबर: 101, प्रस्थान: 10:00 AM"
+      },
+      ta: {
+        enterPNRText: "உங்கள் பி.என்.ஆர் எண் உள்ளிடவும் நிலை நிலையை பெறவும்.",
+        invalidPNR: "தயவுசெய்து செல்லுபடியான 10 இலக்க பி.என்.ஆர் எண்னை உள்ளிடவும்.",
+        mockResult: "மொக் முடிவு: பி.என்.ஆர் நிலை ",
+        trainName: "எக்ஸ்பிரஸ் 123",
+        trainDetails: "ரெயில் எண்: 101, புறப்பாடு: 10:00 AM"
+      }
+    };
+
+    function changeLanguage(event) {
+      const lang = event.target.value;
+      document.getElementById("enter-pnr-text").innerText = translations[lang].enterPNRText;
+    }
+
+    function checkPNR(event) {
+      event.preventDefault();
+      const pnr = document.getElementById("pnr").value.trim();
+      const lang = document.getElementById("language-select").value;
+      
+      if (pnr.length !== 10 || isNaN(pnr)) {
+        document.getElementById("result").innerText = translations[lang].invalidPNR;
+        clearTrainDetails();
+        return;
+      }
+
+      let resultText = translations[lang].mockResult + pnr + "\n";
+      if (pnr === "1111111111") {
+        showTrainDetails(lang);
+      } else if (pnr === "0000000000") {
+        showTrainDetails(lang);
+      } else {
+        resultText += "No details available.";
+        clearTrainDetails();
+      }
+
+      document.getElementById("result").innerText = resultText;
+    }
+
+    function showTrainDetails(lang) {
+      document.getElementById("train-name-details").innerText = translations[lang].trainName;
+      document.getElementById("train-info-details").innerText = translations[lang].trainDetails;
+      document.getElementById("train-name").style.display = "block";
+      document.getElementById("train-info").style.display = "block";
+    }
+
+    function clearTrainDetails() {
+      document.getElementById("train-name").style.display = "none";
+      document.getElementById("train-info").style.display = "none";
+    }
+
+    function clearPNR() {
+      document.getElementById("pnr").value = '';
+      document.getElementById("result").innerText = '';
+      clearTrainDetails();
+    }
+  </script>
+
+</body>
+</html>

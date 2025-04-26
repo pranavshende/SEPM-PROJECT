@@ -1,0 +1,57 @@
+<!-- admin-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Railway Management</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header>
+    <h1>Admin Panel</h1>
+    <nav>
+      <a href="#">Bookings</a>
+      <a href="#">Train Management</a>
+      <a href="#">User Queries</a>
+      <a href="#">Reports</a>
+      <a href="#">Settings</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="bookings">
+      <h2>Manage Bookings</h2>
+      <div id="booking-list">Fetching bookings...</div>
+    </section>
+
+    <section id="train-schedule">
+      <h2>Manage Train Schedules</h2>
+      <button>Add New Train</button>
+      <div id="train-list">Loading trains...</div>
+    </section>
+
+    <section id="queries">
+      <h2>User Queries</h2>
+      <div id="queries-list">Loading queries...</div>
+    </section>
+
+    <section id="reports">
+      <h2>Reports</h2>
+      <button>Generate Report</button>
+      <div id="report-container"></div>
+    </section>
+
+    <section id="settings">
+      <h2>System Settings</h2>
+      <form>
+        <label>Enable Maintenance Mode: <input type="checkbox"></label>
+        <button>Save Settings</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Indian Railways | Admin Access</p>
+  </footer>
+</body>
+</html>

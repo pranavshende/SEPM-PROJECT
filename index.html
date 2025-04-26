@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway Management System</title>
+  <style>
+    /* (Your existing CSS remains unchanged) */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('home3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(11, 61, 145, 0.85);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .news-section {
+      background: rgba(0, 0, 0, 0.75);
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    }
+    .news-section h2 {
+      color: #FFD700;
+      margin-bottom: 15px;
+    }
+    .news-item {
+      background-color: rgba(255,255,255,0.1);
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border-left: 5px solid #FFD700;
+    }
+    .news-item h3 {
+      margin: 0 0 8px;
+      color: #fff;
+    }
+    .news-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+    .enquiry-nav {
+      background-color: #2b78c6;
+      padding: 8px 20px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .enquiry-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .enquiry-nav a:hover {
+      text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+  <header>
+    <h1 data-i18n="title">Indian Railway Management System</h1>
+    <nav class="enquiry-nav">
+      <a href="pnr-enquiry.html" data-i18n="pnr">PNR Enquiry</a>
+      <a href="find.html" data-i18n="booking">Ticket Booking</a>
+      <a href="train.html" data-i18n="schedule">Train Schedule</a>
+      <a href="login.html" data-i18n="login">Login</a>
+      <a href="login.html" data-i18n="signup">Sign Up</a>
+    </nav>
+
+    <div id="language-selector">
+      <label for="lang">🌐 Language:</label>
+      <select id="lang" onchange="setLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="bn">বাংলা</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="news-section">
+    <h2 data-i18n="newsTitle">Latest Railway News</h2>
+
+    <div class="news-item">
+      <h3 data-i18n="news1title">New Summer Special Trains Announced</h3>
+      <p data-i18n="news1desc">Indian Railways launches 20 new summer special trains from 1st May to manage high demand during vacations.</p>
+    </div>
+
+    <div class="news-item">
+      <h3 data-i18n="news2title">Mann Ki Baat: Rail Safety Initiatives Highlighted</h3>
+      <p data-i18n="news2desc">PM emphasized recent safety and technology improvements in railways during the 27th April broadcast.</p>
+    </div>
+
+    <div class="news-item">
+      <h3 data-i18n="news3title">Online Booking Maintenance Notice</h3>
+      <p data-i18n="news3desc">Ticketing services will be temporarily unavailable from 2 AM to 4 AM on 28th April due to system maintenance.</p>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Indian Railway Management System",
+        pnr: "PNR Enquiry",
+        booking: "Ticket Booking",
+        schedule: "Train Schedule",
+        login: "Login",
+        signup: "Sign Up",
+        newsTitle: "Latest Railway News",
+        news1title: "New Summer Special Trains Announced",
+        news1desc: "Indian Railways launches 20 new summer special trains from 1st May to manage high demand during vacations.",
+        news2title: "Mann Ki Baat: Rail Safety Initiatives Highlighted",
+        news2desc: "PM emphasized recent safety and technology improvements in railways during the 27th April broadcast.",
+        news3title: "Online Booking Maintenance Notice",
+        news3desc: "Ticketing services will be temporarily unavailable from 2 AM to 4 AM on 28th April due to system maintenance."
+      },
+      hi: {
+        title: "भारतीय रेलवे प्रबंधन प्रणाली",
+        pnr: "पीएनआर पूछताछ",
+        booking: "टिकट बुकिंग",
+        schedule: "ट्रेन शेड्यूल",
+        login: "लॉग इन",
+        signup: "साइन अप",
+        newsTitle: "रेलवे की ताज़ा खबरें",
+        news1title: "नई समर स्पेशल ट्रेनें घोषित",
+        news1desc: "भारतीय रेलवे ने छुट्टियों के दौरान अधिक मांग को पूरा करने के लिए 1 मई से 20 नई समर स्पेशल ट्रेनें शुरू की हैं।",
+        news2title: "मन की बात: रेल सुरक्षा पहलों पर जोर",
+        news2desc: "प्रधानमंत्री ने 27 अप्रैल के प्रसारण में रेलवे में हालिया सुरक्षा और तकनीकी सुधारों को उजागर किया।",
+        news3title: "ऑनलाइन बुकिंग रखरखाव सूचना",
+        news3desc: "टिकटिंग सेवाएं 28 अप्रैल को सुबह 2 बजे से 4 बजे तक अस्थायी रूप से बंद रहेंगी।"
+      },
+      // Add translations for bn, ta, te similarly
+    };
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+  </script>
+</body>
+</html>
