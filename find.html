@@ -6,88 +6,226 @@
     <title>Indian Railway Management System</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      /* Reset styles */
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
+
+      /* General body styles */
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Header styles */
       header {
-        background: #333;
+        background-color: #2a3d66;
         color: white;
         padding: 1rem;
         display: flex;
+        justify-content: space-between;
         align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
       nav ul {
         list-style: none;
         display: flex;
-        gap: 1rem;
-        margin: px;
+        gap: 1.5rem;
+        margin: 0;
         padding: 0;
       }
-      nav ul li a {
-    padding-left: 10px;
-    color: white;
-    text-decoration: none;
-    display: block; /* This makes the link a block-level element */
-    text-align: left; /* Aligns text to the left */
-}
 
-      .logo {
-        font-size: 1.5rem;
-        margin-right: auto;
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
       }
+
+      nav ul li a:hover {
+        color: #f0c674;
+      }
+
       .language-selector {
-        margin-left: 50rem;
-        
-      }
-      .search-section,
-      .results-section {
-        padding: 1rem;
-      }
-      .train-card {
-        border: 1px solid #ccc;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 8px;
-        background: #f9f9f9;
-      }
-      .train-info h2 {
-        margin: 0.5rem 0;
-      }
-      .book-button {
-        padding: 0.5rem 1rem;
-        background: green;
+        background: #2a3d66;
         color: white;
         border: none;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
         cursor: pointer;
       }
+
+      /* Main section styles */
+      main {
+        padding: 2rem 1.5rem;
+      }
+
+      .search-section {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        max-width: 500px;
+        margin: 2rem auto;
+      }
+
+      .search-section h1 {
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      .search-section input {
+        width: 100%;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border 0.3s ease;
+      }
+
+      .search-section input:focus {
+        border: 2px solid #2a3d66;
+        outline: none;
+      }
+
+      .search-section button {
+        width: 100%;
+        padding: 1rem;
+        background-color: #2a3d66;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .search-section button:hover {
+        background-color: #f0c674;
+      }
+
+      /* Train results card styles */
+      .train-card {
+        background: white;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .train-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .train-info h2 {
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+      }
+
+      .train-info p {
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+      }
+
+      .book-button {
+        background-color: #f0c674;
+        padding: 0.8rem 1.5rem;
+        color: #2a3d66;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .book-button:hover {
+        background-color: #c7a500;
+      }
+
+      /* Footer styles */
       footer {
-        background: #222;
+        background-color: #222;
         color: white;
         text-align: center;
+        padding: 1.5rem 1rem;
+        font-size: 1rem;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+
+      /* Responsive styles */
+      @media screen and (max-width: 768px) {
+        .language-selector {
+          margin-left: 2rem;
+        }
+
+        .search-section {
+          max-width: 100%;
+          padding: 1rem;
+        }
+
+        .train-card {
+          margin: 1rem 0;
+        }
+      }
+    </style>
+    <style>
+      /* Add your existing styles here */
+
+      /* New Button Style */
+      .show-all-button {
+        width: 100%;
         padding: 1rem;
+        background-color: #2a3d66;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      .show-all-button:hover {
+        background-color: #f0c674;
       }
     </style>
   </head>
   <body>
     <header>
+      <div class="logo" data-translate="title">
+        Indian Railway Management System
+      </div>
       <nav>
-        <div class="logo" data-translate="title">
-          Indian Railway Management System
-        </div>
         <ul>
           <li><a href="index.html" data-translate="home">Home</a></li>
           <li><a href="pnr-enquiry.html" data-translate="trains">Trains</a></li>
           <li><a href="login.html" data-translate="login">Login</a></li>
         </ul>
-        <select class="language-selector" id="language-selector">
-          <option value="en">English</option>
-          <option value="hi">हिंदी</option>
-        </select>
       </nav>
+      <select class="language-selector" id="language-selector">
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
+      </select>
     </header>
 
+    
     <main>
       <section class="search-section">
         <h1 data-translate="bookTitle">Book Your Train Tickets</h1>
@@ -97,6 +235,8 @@
           <input type="date" required />
           <button type="submit" data-translate="search">Search</button>
         </form>
+        <!-- Show All Trains Button -->
+        <button class="show-all-button" id="show-all-trains" data-translate="showAll">Show All Trains</button>
       </section>
 
       <section class="results-section" id="results-section">
@@ -104,7 +244,7 @@
       </section>
     </main>
 
-
+    
     <script>
       const translations = {
         en: {
@@ -122,6 +262,7 @@
           arrival: "Arrival",
           status: "Status",
           noTrains: "No matching trains found.",
+          showAll: "Show All Trains",
         },
         hi: {
           title: "भारतीय रेलवे प्रबंधन प्रणाली",
@@ -138,13 +279,14 @@
           arrival: "आगमन",
           status: "स्थिति",
           noTrains: "कोई मेल खाती ट्रेन नहीं मिली।",
+          showAll: "सभी ट्रेनें दिखाएँ",
         },
       };
 
       const allTrains = [
         {
           trainName: "Rajdhani Express",
-          from: "Delhi",
+          from: "Nagpur",
           to: "Mumbai",
           departure: "06:00 AM",
           arrival: "02:00 PM",
@@ -208,72 +350,82 @@
         },
       ];
 
-      function updateLanguage(lang) {
-        document.querySelectorAll("[data-translate]").forEach((el) => {
-          const key = el.getAttribute("data-translate");
+      const languageSelector = document.getElementById("language-selector");
+      const showAllTrainsButton = document.getElementById("show-all-trains");
+
+      languageSelector.addEventListener("change", function () {
+        setLanguage(languageSelector.value);
+      });
+
+      function setLanguage(lang) {
+        const elementsToTranslate = document.querySelectorAll("[data-translate]");
+        elementsToTranslate.forEach((element) => {
+          const key = element.getAttribute("data-translate");
           if (translations[lang][key]) {
-            el.textContent = translations[lang][key];
+            element.textContent = translations[lang][key];
           }
         });
-        renderTrains(currentSearch, lang);
       }
 
-      let currentSearch = { from: "", to: "" };
-
-      function renderTrains(search = {}, lang = "en") {
+      document.getElementById("search-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const from = document.getElementById("from").value;
+        const to = document.getElementById("to").value;
         const resultsSection = document.getElementById("results-section");
-        const langData = translations[lang];
-        resultsSection.innerHTML = "";
+        resultsSection.innerHTML = '';
 
-        const results = allTrains.filter(
-          (train) =>
-            train.from.toLowerCase().includes(search.from.toLowerCase()) &&
-            train.to.toLowerCase().includes(search.to.toLowerCase())
+        const filteredTrains = allTrains.filter(
+          (train) => train.from.toLowerCase() === from.toLowerCase() && train.to.toLowerCase() === to.toLowerCase()
         );
 
-        if (results.length === 0) {
-          resultsSection.innerHTML = `<p>${langData.noTrains}</p>`;
-          return;
+        if (filteredTrains.length === 0) {
+          resultsSection.innerHTML = `<p>${translations[languageSelector.value].noTrains}</p>`;
+        } else {
+          filteredTrains.forEach((train) => {
+            const trainCard = document.createElement("div");
+            trainCard.classList.add("train-card");
+
+            const trainInfo = `
+              <div class="train-info">
+                <h2>${train.trainName}</h2>
+                <p><strong>${translations[languageSelector.value].fromTo.replace("{from}", train.from).replace("{to}", train.to)}</strong></p>
+                <p><strong>${translations[languageSelector.value].departure}: </strong>${train.departure}</p>
+                <p><strong>${translations[languageSelector.value].arrival}: </strong>${train.arrival}</p>
+                <p><strong>${translations[languageSelector.value].status}: </strong>${train.availability}</p>
+                <button class="book-button">${translations[languageSelector.value].bookNow}</button>
+              </div>
+            `;
+            trainCard.innerHTML = trainInfo;
+            resultsSection.appendChild(trainCard);
+          });
         }
+      });
 
-        results.forEach((train) => {
-          const card = document.createElement("div");
-          card.className = "train-card";
-          card.innerHTML = `
-          <div class="train-info">
-            <h2>${train.trainName}</h2>
-            <p>${langData.fromTo
-              .replace("{from}", train.from)
-              .replace("{to}", train.to)}</p>
-            <p>${langData.departure}: ${train.departure}</p>
-            <p>${langData.arrival}: ${train.arrival}</p>
-            <p>${langData.status}: ${train.availability}</p>
-          </div>
-          <button class="book-button">${langData.bookNow}</button>
-        `;
-          resultsSection.appendChild(card);
+      // Show all trains on button click
+      showAllTrainsButton.addEventListener("click", () => {
+        const resultsSection = document.getElementById("results-section");
+        resultsSection.innerHTML = '';
+
+        allTrains.forEach((train) => {
+          const trainCard = document.createElement("div");
+          trainCard.classList.add("train-card");
+
+          const trainInfo = `
+            <div class="train-info">
+              <h2>${train.trainName}</h2>
+              <p><strong>${translations[languageSelector.value].fromTo.replace("{from}", train.from).replace("{to}", train.to)}</strong></p>
+              <p><strong>${translations[languageSelector.value].departure}: </strong>${train.departure}</p>
+              <p><strong>${translations[languageSelector.value].arrival}: </strong>${train.arrival}</p>
+              <p><strong>${translations[languageSelector.value].status}: </strong>${train.availability}</p>
+              <button class="book-button">${translations[languageSelector.value].bookNow}</button>
+            </div>
+          `;
+          trainCard.innerHTML = trainInfo;
+          resultsSection.appendChild(trainCard);
         });
-      }
+      });
 
-      document
-        .getElementById("search-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const from = document.getElementById("from").value.trim();
-          const to = document.getElementById("to").value.trim();
-          currentSearch = { from, to };
-          const lang = document.getElementById("language-selector").value;
-          renderTrains(currentSearch, lang);
-        });
-
-      document
-        .getElementById("language-selector")
-        .addEventListener("change", function () {
-          updateLanguage(this.value);
-        });
-
-      // Initial language setup
-      updateLanguage("en");
+      setLanguage("en"); // Set default language to English on load
     </script>
   </body>
 </html>
