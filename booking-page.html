@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ticket Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding-top: 0px;
+    }
+    header {
+      background-color: rgba(11, 61, 145, 0.85);
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 3px solid #FFD700;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      text-decoration: underline;
+      color: #FFD700;
+    }
+    .section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    .section h3 {
+      margin-top: 0;
+    }
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    input, select {
+      padding: 8px;
+      width: 100%;
+    }
+    .note {
+      background: #fdeeea;
+      padding: 10px;
+      border-left: 4px solid #f47b20;
+      margin-bottom: 20px;
+    }
+    .add-links {
+      color: #0b59b3;
+      cursor: pointer;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    .small-text {
+      font-size: 0.9em;
+      color: #333;
+      margin-top: 10px;
+    }
+    .contact-info {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .phone-input {
+      display: flex;
+      align-items: center;
+    }
+    .phone-input span {
+      margin-right: 5px;
+    }
+    /* Button Styling */
+.btn-book-now {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.btn-book-now:hover {
+  background-color: #0056b3;
+}
+
+  </style>
+</head>
+<header>
+  <h1 data-i18n="title">Indian Railway Management System</h1>
+  <nav class="enquiry-nav">
+    <a href="pnr-enquiry.html" data-i18n="pnr">PNR Enquiry</a>
+    <a href="find.html" data-i18n="booking">Ticket Booking</a>
+    <a href="train.html" data-i18n="schedule">Train Schedule</a>
+    <a href="login.html" data-i18n="login">Login</a>
+    <a href="login.html" data-i18n="signup">Sign Up</a>
+  </nav>
+
+  <div id="language-selector">
+    <label for="lang">🌐 Language:</label>
+    <select id="lang" onchange="setLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="bn">বাংলা</option>
+      <option value="ta">தமிழ்</option>
+      <option value="te">తెలుగు</option>
+    </select>
+  </div>
+</header>
+<body>
+  
+  <div class="note">
+    <ul>
+      <li>Please submit full name of the passengers instead of initials.</li>
+      <li>The ID card will be required during journey.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Passenger Details</h3>
+    <div class="input-row">
+      <input type="text" placeholder="Name" name="name">
+      <input type="number" placeholder="Age" name="age">
+      <select name="gender">
+        <option value="">Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <select name="nationality">
+        <option value="">Select Country</option>
+        <option value="India">India</option>
+        <option value="Other">Other</option>
+      </select>
+      <select name="berth">
+        <option value="">No Preference</option>
+        <option value="lower">Lower</option>
+        <option value="middle">Middle</option>
+        <option value="upper">Upper</option>
+        <option value="side-lower">Side Lower</option>
+        <option value="side-upper">Side Upper</option>
+      </select>
+    </div>
+
+    <span class="add-links">+ Add Passenger / Add Infant With Berth</span><br>
+    <span class="add-links">+ Add Infant Without Berth</span>
+
+    <div class="small-text">
+      *Children under 5 years of age shall be carried free and no purchase of any ticket is required (if no separate berth is opted).
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Contact Details</h3>
+    <div class="contact-info">
+      (Ticket details will be sent to email - pr******@gmail.com and registered mobile number 84******09)
+    </div>
+    <div class="phone-input">
+      <span>+91</span><input type="tel" name="mobile" placeholder="Enter Mobile Number">
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Payment Method</h3>
+    <div class="input-row">
+      <select name="payment_method">
+        <option value="">Select Payment Method</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="debit_card">Debit Card</option>
+        <option value="net_banking">Net Banking</option>
+        <option value="upi">UPI</option>
+        <option value="wallet">Wallet</option>
+      </select>
+      <input type="number" placeholder="Amount" name="amount">
+    </div>
+    <!-- Book Now Button -->
+<button class="btn-book-now">Book Now</button>
+
+  </div>
+
+</body>
+</html>

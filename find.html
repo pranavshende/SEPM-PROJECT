@@ -185,27 +185,6 @@
         }
       }
     </style>
-    <style>
-      /* Add your existing styles here */
-
-      /* New Button Style */
-      .show-all-button {
-        width: 100%;
-        padding: 1rem;
-        background-color: #2a3d66;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 1.1rem;
-        transition: background-color 0.3s ease;
-        margin-top: 1rem;
-      }
-
-      .show-all-button:hover {
-        background-color: #f0c674;
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -225,7 +204,6 @@
       </select>
     </header>
 
-    
     <main>
       <section class="search-section">
         <h1 data-translate="bookTitle">Book Your Train Tickets</h1>
@@ -244,7 +222,6 @@
       </section>
     </main>
 
-    
     <script>
       const translations = {
         en: {
@@ -392,7 +369,9 @@
                 <p><strong>${translations[languageSelector.value].departure}: </strong>${train.departure}</p>
                 <p><strong>${translations[languageSelector.value].arrival}: </strong>${train.arrival}</p>
                 <p><strong>${translations[languageSelector.value].status}: </strong>${train.availability}</p>
-                <button class="book-button">${translations[languageSelector.value].bookNow}</button>
+                <button class="book-button">
+                  <a href="booking-page.html?train=${train.trainName}" style="color: inherit; text-decoration: none;">${translations[languageSelector.value].bookNow}</a>
+                </button>
               </div>
             `;
             trainCard.innerHTML = trainInfo;
@@ -417,7 +396,9 @@
               <p><strong>${translations[languageSelector.value].departure}: </strong>${train.departure}</p>
               <p><strong>${translations[languageSelector.value].arrival}: </strong>${train.arrival}</p>
               <p><strong>${translations[languageSelector.value].status}: </strong>${train.availability}</p>
-              <button class="book-button">${translations[languageSelector.value].bookNow}</button>
+              <button class="book-button">
+                <a href="booking-page.html?train=${train.trainName}" style="color: inherit; text-decoration: none;">${translations[languageSelector.value].bookNow}</a>
+              </button>
             </div>
           `;
           trainCard.innerHTML = trainInfo;
